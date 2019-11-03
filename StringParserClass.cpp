@@ -70,7 +70,82 @@ using namespace KP_StringParserClass;
 		//ERROR_TAGS_NULL if either pStart or pEnd is null
 		//ERROR_DATA_NULL pDataToSearchThru is null
 		int StringParserClass::getDataBetweenTags(char *pDataToSearchThru, std::vector<std::string> &myVector) {
-			return 0;
+			if (pStartTag == NULL || pEndTag == NULL) {
+				return ERROR_TAGS_NULL;
+			}
+
+			if (pDataToSearchThru == NULL) {
+				return ERROR_DATA_NULL;
+			}
+
+			myVector.clear();
+			std::string resultString = "";
+			bool startTagExists = false;
+			bool endTagExists = false;
+
+			while(*pDataToSearchThru != '\0') {
+
+					if (*pDataToSearchThru == '>') {
+						while (*pDataToSearchThru != '<') {
+							resultString += *pDataToSearchThru;
+							pDataToSearchThru++;
+						}
+
+						int startTagNumChars = strlen(pStartTag);
+						int endTagNumChars = strlen(pEndTag);
+
+						if (*pDataToSearchThru == '<') {
+							for (int i = 0; i < startTagNumChars-1; i++) {
+								if (pStartTag[i] == pDataToSearchThru[i]) {
+									startTagExists = true;
+								}
+								else {
+									//startTagExists = false;
+								}
+							}
+						}
+
+						for (int i = 0; i < endTagNumChars-1; i++) {
+							if (pEndTag[i] == pDataToSearchThru[i]) {
+								endTagExists = true;
+							}
+							else {
+								//endTagExists = false;
+							}
+						}
+
+					}
+
+
+
+
+
+
+
+
+
+
+
+
+
+				if (endTagExists && startTagExists) {
+					myVector.push_back(resultString);
+				}
+
+				startTagExists = false;
+				endTagExists = false;
+				resultString = "";
+
+				pDataToSearchThru++;
+
+
+
+
+
+
+			}
+
+			return SUCCESS;
 		}
 
 
