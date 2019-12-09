@@ -15,9 +15,6 @@
 
 using namespace KP_StringParserClass;
 
-
-
-
 		//dont forget to initialize member variables
 		StringParserClass::StringParserClass() {
 			this-> pStartTag = NULL;
@@ -117,17 +114,6 @@ using namespace KP_StringParserClass;
 					}
 
 
-
-
-
-
-
-
-
-
-
-
-
 				if (endTagExists && startTagExists) {
 					myVector.push_back(resultString);
 				}
@@ -138,16 +124,8 @@ using namespace KP_StringParserClass;
 
 				pDataToSearchThru++;
 
-
-
-
-
-
 			}
 
 			return SUCCESS;
 		}
-
-
-
 
